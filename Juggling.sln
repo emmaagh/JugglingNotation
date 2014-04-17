@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Juggling", "Juggling\Juggling.fsproj", "{EFA47847-84A1-4161-A20D-D8AAC318BCBE}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Juggling.Testing", "Juggling.Testing\Juggling.Testing.fsproj", "{7200DF7A-85BD-4C28-B92B-0ADF5B6F5D42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFA47847-84A1-4161-A20D-D8AAC318BCBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFA47847-84A1-4161-A20D-D8AAC318BCBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFA47847-84A1-4161-A20D-D8AAC318BCBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFA47847-84A1-4161-A20D-D8AAC318BCBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7200DF7A-85BD-4C28-B92B-0ADF5B6F5D42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7200DF7A-85BD-4C28-B92B-0ADF5B6F5D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7200DF7A-85BD-4C28-B92B-0ADF5B6F5D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7200DF7A-85BD-4C28-B92B-0ADF5B6F5D42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
