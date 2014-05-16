@@ -7,9 +7,7 @@ module BasicJugglingFunctions
 
         let p = List.length inputSequence
         let moduloP = ModuloP p
-        let (=~) = moduloP.EqualsModP ()
         let (+~) = moduloP.AddModP ()
-        let (-~) = moduloP.SubtractModP ()
 
         let isNonNegative = List.forall ((<=) 0) inputSequence
         let hasIntegerAverage = 0 = (moduloP.Value <| List.sum inputSequence)
