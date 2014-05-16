@@ -7,11 +7,11 @@
     let private testSequence s =
         let result = permuteQualifyingToJuggling s
         match s with
-        | EmptySequence         -> Assert.Equal (Failure "Cannot juggle nothing", result)
-        | NonQualifyingSequence -> Assert.Equal (Failure "Input sequence does not qualify", result)
+        | EmptySequence         -> Assert.Equal (None, result)
+        | NonQualifyingSequence -> Assert.Equal (None, result)
         | _                     -> match result with
-                                   | Success s'     -> Assert.True (isJuggleable s')
-                                   | Failure r      -> failwith "Failed to transform to juggling sequence"
+                                   | Some s'  -> Assert.True (isJuggleable s')
+                                   | None     -> failwith "Failed to transform to juggling sequence"
 
     [<Fact>]
     let ``test odd sequences`` () =
