@@ -2,7 +2,7 @@
 
     open System.Collections.Generic
     open Xunit
-    open JugglingSequenceInversion
+    open InvertJugglingSequence
 
     let private testInvertingTwice (s:int list) = Assert.Equal<int list> (s, s |> invert |> invert)
 

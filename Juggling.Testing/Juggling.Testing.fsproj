@@ -49,10 +49,10 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
-    <Compile Include="PermutationGenerationTests.fs" />
+    <Compile Include="GeneratePermutationsTests.fs" />
     <Compile Include="PermuteQualifyingToJugglingTests.fs" />
-    <Compile Include="InversionTesting.fs" />
-    <Compile Include="JugglingSequenceGenerationTests.fs" />
+    <Compile Include="InvertTests.fs" />
+    <Compile Include="GenerateJugglingSequencesTests.fs" />
     <Compile Include="QualifyingToAllJugglingRearrangementsTests.fs" />
     <None Include="packages.config" />
   </ItemGroup>

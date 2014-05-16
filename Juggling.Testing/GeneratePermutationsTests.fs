@@ -1,7 +1,7 @@
 ﻿module PermutationGenerationTests
 
     open Xunit
-    open PermutationGeneration
+    open GeneratePermutations
 
     [<Fact>]
     let ``Test 1`` () =

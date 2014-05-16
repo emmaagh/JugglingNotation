@@ -2,7 +2,7 @@
 
     open Xunit
     open BasicJugglingFunctions
-    open JugglingSequenceGeneration
+    open GenerateJugglingSequences
 
     let private crossProduct set =
         Set.map (fun b -> Set.map (fun a -> a,b) set)

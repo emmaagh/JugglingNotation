@@ -1,6 +1,6 @@
-﻿module JugglingSequenceGeneration
+﻿module GenerateJugglingSequences
 
-    open PermutationGeneration
+    open GeneratePermutations
     open ModularArithmetic
     open BasicJugglingFunctions
 

@@ -49,13 +49,13 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
-    <Compile Include="PermutationGeneration.fs" />
+    <Compile Include="GeneratePermutations.fs" />
     <Compile Include="ModularArithmetic.fs" />
     <Compile Include="Siteswap.fs" />
     <Compile Include="BasicJugglingFunctions.fs" />
     <Compile Include="PermuteQualifyingToJuggling.fs" />
-    <Compile Include="JugglingSequenceInversion.fs" />
-    <Compile Include="JugglingSequenceGeneration.fs" />
+    <Compile Include="InvertJugglingSequence.fs" />
+    <Compile Include="GenerateJugglingSequences.fs" />
     <Compile Include="QualifyingToAllJugglingRearrangements.fs" />
   </ItemGroup>
   <ItemGroup>

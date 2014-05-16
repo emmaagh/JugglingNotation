@@ -1,4 +1,4 @@
-﻿module JugglingSequenceInversion
+﻿module InvertJugglingSequence
 
     open BasicJugglingFunctions
 

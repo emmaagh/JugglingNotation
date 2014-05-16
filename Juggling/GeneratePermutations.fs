@@ -1,4 +1,4 @@
-﻿module PermutationGeneration
+﻿module GeneratePermutations
 
     let rec private insertions x = function
         | []                  -> Set.singleton [x]
