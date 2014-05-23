@@ -4,7 +4,7 @@
     open ModularArithmetic
     open BasicJugglingFunctions
 
-    let private computePhi' p =
+    let private computeTestVector' p =
         let (-~) = (ModuloP p).SubtractModP ()
         List.mapi (fun i ai -> ai -~ i)
 
@@ -20,10 +20,9 @@
 
     // Generates all of the juggling sequences of period p and balls b
     let generateJugglingSequences b p =
-        let computePhi' = computePhi' p
         generatePermutations p
-        |> Set.map computePhi'
-        |> Set.map (fun phi' -> phi', (b - (balls phi')))
-        |> Set.map (fun (phi', b') -> phi', generateNonNegativeLists b' p)
-        |> Set.map (fun (phi', phi''s) -> Set.map (fun phi'' -> List.map2 (fun x y -> x + p*y) phi' phi'') phi''s)
+        |> Set.map (computeTestVector' p)
+        |> Set.map (fun testVector' -> testVector', b - balls testVector')
+        |> Set.map (fun (testVector', b') -> testVector', generateNonNegativeLists b' p)
+        |> Set.map (fun (testVector', qs) -> qs |> Set.map (List.map2 (fun x y -> x + p*y) testVector'))
         |> Set.unionMany
