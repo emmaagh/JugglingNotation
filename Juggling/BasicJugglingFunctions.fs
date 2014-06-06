@@ -3,7 +3,7 @@ module BasicJugglingFunctions
 
     open ModularArithmetic
 
-    type private SequenceWithBasicJugglingDefinitionCapabilities (inputSequence) =
+    type private Sequence (inputSequence) =
 
         let p = List.length inputSequence
         let moduloP = ModuloP p
@@ -23,21 +23,35 @@ module BasicJugglingFunctions
 
         member m.IsJuggleable = isNonNegative && m.PhiIsJugglingFn
 
-    let phi s = (SequenceWithBasicJugglingDefinitionCapabilities s).Phi
+        member m.CyclicPermutation n =
+            inputSequence
+            |> List.permute ((+) n >> moduloP.Value)
 
-    let qualifies s = (SequenceWithBasicJugglingDefinitionCapabilities s).Qualifies
+    let phi s = (Sequence s).Phi
 
-    let isJuggleable s = (SequenceWithBasicJugglingDefinitionCapabilities s).IsJuggleable
+    let qualifies s = (Sequence s).Qualifies
+
+    let isJuggleable s = (Sequence s).IsJuggleable
 
     let (|EmptySequence|JugglingSequence|QualifyingSequence|NonQualifyingSequence|) s =
         match s with
         | []  -> EmptySequence
-        | _   -> let s' = SequenceWithBasicJugglingDefinitionCapabilities s
+        | _   -> let s' = Sequence s
                  if      s'.IsJuggleable then JugglingSequence
                  else if s'.Qualifies    then QualifyingSequence
                  else                         NonQualifyingSequence
 
     let balls s =
         match s with
-        | JugglingSequence  -> (int) <| List.averageBy float s
+        | JugglingSequence  -> int <| List.averageBy float s
         | _                 -> failwith <| sprintf "%A is not a juggling sequence" s
+
+    let equalUpToCyclicPermutation s1 s2 =
+        Seq.init (List.length s1) id
+        |> Seq.map (Sequence s1).CyclicPermutation
+        |> Seq.exists ((=) s2)
+
+    let getCyclicPermutations s =
+        let s' = Sequence s
+        s'.CyclicPermutation
+        |> List.init (List.length s)
