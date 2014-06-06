@@ -55,3 +55,4 @@ module BasicJugglingFunctions
         let s' = Sequence s
         s'.CyclicPermutation
         |> List.init (List.length s)
+        |> Set.ofList
