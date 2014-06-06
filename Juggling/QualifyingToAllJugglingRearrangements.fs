@@ -7,7 +7,7 @@
 
     let private listRemoveFirst element =
         let folder (xs, state) x = if state && x = element then xs, not state
-                                    else x :: xs, state
+                                   else x :: xs, state
         List.fold folder ([], true) >> fst
 
     let private findAllJugglingRearrangements' inputSequence =
@@ -19,20 +19,16 @@
                                    |> List.filter (fun a -> slotsTaken |> Set.contains (a +~ count) |> not)
                                    |> Set.ofList
                                    |> Set.map (fun a -> inputSequenceTail
-                                                        |> listRemoveFirst a
-                                                        |> helper (Set.add (a +~ count) slotsTaken)
-                                                        |> Set.map (fun tail -> a::tail))
+                                                       |> listRemoveFirst a
+                                                       |> helper (Set.add (a +~ count) slotsTaken)
+                                                       |> Set.map (fun tail -> a::tail))
                                    |> Set.unionMany
-        match inputSequence with
-        | []      -> Set.empty
-        | n::ns   -> ns
-                     |> helper (Set.singleton n)
-                     |> Set.map (fun tail -> n::tail)
+        helper Set.empty inputSequence
 
     // Finds all rearrangements of a qualifying sequence to juggling sequences 
     // Remark: Not yet finished / fully tested
     let findAllJugglingRearrangements inputSequence =
-        if qualifies inputSequence then
-            findAllJugglingRearrangements' inputSequence
+        if List.isEmpty inputSequence || not <| qualifies inputSequence then
+            Set.empty
         else
-            failwith "Input sequence does not qualify"
+            findAllJugglingRearrangements' inputSequence
