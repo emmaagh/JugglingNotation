@@ -1,6 +1,19 @@
 ﻿module QualifyingToAllJugglingRearrangements
 
     // Fairly brute force implementation
+    // Complexity estimate:
+    //     For length of slotsTaken=n and length of inputSequenceTail=m, the complexity of helper is
+    //     c(n,m) = n                       (Set.count)
+    //              + m.n                   (List.filter)
+    //              + m(m + c(n+1,m-1))     (Set.map - very much an upper bound)
+    //     Therefore total complexity
+    //       = c
+    //       = c(0, m)
+    //       = m(m + c(1, m-1))
+    //       = m(2m + (m-1)(m - 1 + c(2,m-2)))
+    //       = m(2m + (m-1)(m - 1 + 2 + 2(m-2) + (m-2)(m - 2 + c(3,m-3))))
+    //       = m(2m + (m-1)(3m - 3 + (m-2)(m - 2 + c(3,m-3))))
+    //       = O(m!)
 
     open ModularArithmetic
     open BasicJugglingFunctions
@@ -19,14 +32,13 @@
                                    |> List.filter (fun a -> slotsTaken |> Set.contains (a +~ count) |> not)
                                    |> Set.ofList
                                    |> Set.map (fun a -> inputSequenceTail
-                                                       |> listRemoveFirst a
-                                                       |> helper (Set.add (a +~ count) slotsTaken)
-                                                       |> Set.map (fun tail -> a::tail))
+                                                        |> listRemoveFirst a
+                                                        |> helper (Set.add (a +~ count) slotsTaken)
+                                                        |> Set.map (fun tail -> a::tail))
                                    |> Set.unionMany
         helper Set.empty inputSequence
 
     // Finds all rearrangements of a qualifying sequence to juggling sequences 
-    // Remark: Not yet finished / fully tested
     let findAllJugglingRearrangements inputSequence =
         if List.isEmpty inputSequence || not <| qualifies inputSequence then
             Set.empty
