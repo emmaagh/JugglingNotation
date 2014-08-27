@@ -57,6 +57,7 @@
     <Compile Include="InvertJugglingSequence.fs" />
     <Compile Include="GenerateJugglingSequences.fs" />
     <Compile Include="QualifyingToAllJugglingRearrangements.fs" />
+    <Compile Include="Cards.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
