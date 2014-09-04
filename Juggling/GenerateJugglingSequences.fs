@@ -5,8 +5,8 @@
     open BasicJugglingFunctions
 
     let private computeTestVector' p =
-        let (-~) = (ModuloP p).SubtractModP ()
-        List.mapi (fun i ai -> ai -~ i)
+        mapToValuesModP
+        >> List.mapi (fun i ai -> (ai -. i).value)
 
     let rec private generateNonNegativeLists sum length =
         match sum, length with

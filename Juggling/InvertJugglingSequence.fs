@@ -4,6 +4,6 @@
 
     let invert s =
         fun i -> List.findIndex ((=) i) <| phiOnSequenceInterval s
-        |> List.init (List.length s)
+        |> List.init (period s)
         |> List.rev
         |> List.map (List.nth s)

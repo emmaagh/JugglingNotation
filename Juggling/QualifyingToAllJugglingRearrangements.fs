@@ -24,19 +24,20 @@
         List.fold folder ([], true) >> fst
 
     let private findAllJugglingRearrangements' inputSequence =
-        let (+~) = (ModuloP (List.length inputSequence)).AddModP ()
+        let landingWithinInterval = modulo <| period inputSequence
         let rec helper slotsTaken = function
             | []                -> Set.singleton []
             | inputSequenceTail -> let count = Set.count slotsTaken
                                    inputSequenceTail
-                                   |> List.filter (fun a -> slotsTaken |> Set.contains (a +~ count) |> not)
+                                   |> List.filter (fun a -> slotsTaken |> Set.contains (landingWithinInterval <| count + a) |> not)
                                    |> Set.ofList
                                    |> Set.map (fun a -> inputSequenceTail
                                                         |> listRemoveFirst a
-                                                        |> helper (Set.add (a +~ count) slotsTaken)
+                                                        |> helper (Set.add (landingWithinInterval <| count + a) slotsTaken)
                                                         |> Set.map (fun tail -> a::tail))
                                    |> Set.unionMany
-        helper Set.empty inputSequence
+        inputSequence
+        |> helper Set.empty
 
     // Finds all rearrangements of a qualifying sequence to juggling sequences 
     let findAllJugglingRearrangements inputSequence =

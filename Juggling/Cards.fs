@@ -12,11 +12,11 @@ module Cards
             ballLandings
             |> List.filter (Set.exists <| withinInterval (indexOfSender s i) i)
             |> List.length
-        List.init (List.length s) cardSelector
+        List.init (period s) cardSelector
 
     let convertCardsToSiteswap cards =
-        let p = List.length cards
-        let card = (ModuloP p).Value >> List.nth cards
+        let p = period cards
+        let card = modulo p >> List.nth cards
         let computeAi i =
             let rec helper j t =
                 match card <| i+j with
