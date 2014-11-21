@@ -25,7 +25,10 @@
         interface IComparable with
             member m.CompareTo o =
                 match o with
-                | :? ModuloP as m' -> m.period.CompareTo m'.period
+                | :? ModuloP as m' -> if m.period = m'.period then
+                                          m.value.CompareTo m'.value
+                                      else
+                                          invalidArg "o" "Cannot compare modulo numbers of different modulus"
                 | _                -> invalidArg "o" "Cannot compare value of different type"
 
         static member (+) (m, m') =

@@ -41,7 +41,7 @@ module BasicJugglingFunctions
         | []  -> EmptySequence
         | s   -> if      isJuggleable s then JugglingSequence
                  else if qualifies s    then QualifyingSequence
-                 else                         NonQualifyingSequence
+                 else                        NonQualifyingSequence
 
     let balls s =
         match s with
@@ -50,23 +50,22 @@ module BasicJugglingFunctions
 
     let cyclicPermutation s n =
         s
-        |> List.permute ((+) n >> (modulo <| List.length s))
-
-    let equalUpToCyclicPermutation s1 s2 =
-        Seq.init (period s1) id
-        |> Seq.map (cyclicPermutation s1)
-        |> Seq.exists ((=) s2)
+        |> List.permute ((+) n >> (modulo <| period s))
 
     let getCyclicPermutations s =
         cyclicPermutation s
         |> List.init (period s)
         |> Set.ofList
 
+    let equalUpToCyclicPermutation s1 s2 =
+        getCyclicPermutations s1
+        |> Set.exists ((=) s2)
+
     // The classes of ball landings within the interval (inclusive of endpoints)
     let getBallLandingsWithinInterval s start ``end`` =
         let length = ``end`` - start + 1
         // TODO: Make algorithm work without this restriction
-        if length < height s then failwith "Interval too small to work over - length must be at least the height of the sequence (as algorithm needs to guarantee ever ball lands in the interval)"
+        if length < height s then failwith "Interval too small to work over - length must be at least the height of the sequence (as algorithm needs to guarantee every ball lands in the interval)"
         let getLandings =
             let rec helper landings i =
                 if i > ``end`` then
